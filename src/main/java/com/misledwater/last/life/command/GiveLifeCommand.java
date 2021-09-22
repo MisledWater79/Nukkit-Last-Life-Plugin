@@ -38,7 +38,7 @@ public class GiveLifeCommand extends Command {
                 return false;
             }
 
-            HashMap<UUID, FakeLastLifePlayer> fakeLastLifePlayer = new HashMap<>(LastLifeCore.getPlugin().getAllFakeLastLifePlayers());
+            HashMap<UUID, FakeLastLifePlayer> fakeLastLifePlayer = LastLifeCore.getPlugin().getAllFakeLastLifePlayers();
             FakeLastLifePlayer giver = fakeLastLifePlayer.get(sender.getServer().getPlayer(sender.getName()).getUniqueId());
             FakeLastLifePlayer taker = fakeLastLifePlayer.get(playerToGive.getUniqueId());
 
