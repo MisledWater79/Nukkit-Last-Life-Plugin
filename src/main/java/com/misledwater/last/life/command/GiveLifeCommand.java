@@ -44,7 +44,9 @@ public class GiveLifeCommand extends Command {
 
             if(giver.getLives() >= 1){
                 giver.setLives(giver.getLives()-1);
+                sender.sendMessgae(TextFormat.RED + "You have given one of your lives to " + taker.getName());
                 taker.setLives(taker.getLives()+1);
+                playerToGive.sendMessage(TextFormat.GREEN + "You have received a life from " + giver.getName());
             }
         }
         return false;
