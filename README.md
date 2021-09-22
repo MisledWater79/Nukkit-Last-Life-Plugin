@@ -19,3 +19,5 @@ This is a plugin for Minecraft bedrock edition Nukkit servers that allows it to 
 * Red Names will have all of their friendships and ties broken and become hostile
 * Red Names can team up with other red names
 * In order to win you must be the last player standing
+## Server Info
+In order to start the game you must run `/lastlifestart`. This will add all online players to the game, along with giving people lives and picking a Boogeyman/Boogeymen. Once the game has started it will put any players who have died on their last life or players who arent added to the game into spectator mode. If you wish to add someone to the game you can run `/addplayer <player>`. If at any point you would like to end the game you can run `/lastlifestop` to stop the game and reset everyone.
