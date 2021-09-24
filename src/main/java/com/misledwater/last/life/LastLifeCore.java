@@ -78,7 +78,7 @@ public class LastLifeCore extends PluginBase {
     private void saveServerData(){
       Gson gson = new Gson();
       LastLifeCore.getPlugin().getLogger().info("\n");
-      LastLifeCore.getPlugin().getLogger().info("Saving Server Data!"";
+      LastLifeCore.getPlugin().getLogger().info("Saving Server Data!");
       String toPut = gson.toJson(LastLifeServerData.class);
       FileManager.writeFile(new File("LastLifeData/ServerData.json"), toPut);
       LastLifeCore.getPlugin().getLogger().info("\n");
