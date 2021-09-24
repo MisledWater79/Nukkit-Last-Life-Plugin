@@ -12,6 +12,12 @@ public class LastLifeStartCmd extends Command {
   
   @Override
   public boolean execute(CommandSender sender,String s,String[] args){
-    LastLifeCore.getPlugin().getServerData()
+    if(LastLifeCore.getPlugn().getServerData().getIsStarted() == true){
+      sender.sendMessage(TextFormat.RED + "The game has already started!");
+    } else {
+      sender.sendMessage(TextFormat.GREEN + "The game has started!");
+      LastLifeCore.getPlugin().getServerData().setIsStarted(true);
+    }
+    return false;
   }
 }
