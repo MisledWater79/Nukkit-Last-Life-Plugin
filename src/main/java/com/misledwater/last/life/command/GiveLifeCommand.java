@@ -38,13 +38,15 @@ public class GiveLifeCommand extends Command {
                 return false;
             }
 
-            HashMap<UUID, FakeLastLifePlayer> fakeLastLifePlayer = new HashMap<>(LastLifeCore.getPlugin().getAllFakeLastLifePlayers());
+            HashMap<UUID, FakeLastLifePlayer> fakeLastLifePlayer = LastLifeCore.getPlugin().getAllFakeLastLifePlayers();
             FakeLastLifePlayer giver = fakeLastLifePlayer.get(sender.getServer().getPlayer(sender.getName()).getUniqueId());
             FakeLastLifePlayer taker = fakeLastLifePlayer.get(playerToGive.getUniqueId());
 
             if(giver.getLives() >= 1){
                 giver.setLives(giver.getLives()-1);
+                sender.sendMessage(TextFormat.RED + "You have given one of your lives to " + taker.getPlayerName());
                 taker.setLives(taker.getLives()+1);
+                playerToGive.sendMessage(TextFormat.GREEN + "You have received a life from " + giver.getPlayerName());
             }
         }
         return false;
