@@ -1,0 +1,7 @@
+name: LastLifeCore
+main: com.misledwater.last.life.LastLifeCore
+version: "1.0.0"
+api: ["1.0.0"]
+author: Misledwater79
+description: "A plugin for Last Life, a game from the Hermitcraft series"
+load: STARTUP
