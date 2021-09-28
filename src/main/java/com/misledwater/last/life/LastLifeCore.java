@@ -85,7 +85,7 @@ public class LastLifeCore extends PluginBase {
 
     @Override
     public void onEnable() {
-        this.getLogger().info(TextFormat.GREEN + "\n\nTutorial Plugin is on!\n\n");
+        this.getLogger().info(TextFormat.GREEN + "\n\nLast Life Plugin is on!\n\n");
         registerCommands();
         registerEvents();
         registerTasks();
@@ -113,6 +113,6 @@ public class LastLifeCore extends PluginBase {
     @Override
     public void onDisable() {
         savePlayerFiles();
-        this.getLogger().info(TextFormat.RED + "\n\nTutorial plugin is off!\n\n");
+        this.getLogger().info(TextFormat.RED + "\n\nLast Life plugin is off!\n\n");
     }
 }

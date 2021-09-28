@@ -22,4 +22,30 @@ This is a plugin for Minecraft bedrock edition Nukkit servers that allows it to 
 ## Server Info
 In order to start the game you must run `/lastlifestart`. This will add all online players to the game, along with giving people lives and picking a Boogeyman/Boogeymen. Once the game has started it will put any players who have died on their last life or players who arent added to the game into spectator mode. If you wish to add someone to the game you can run `/addplayer <player>`. If at any point you would like to end the game you can run `/lastlifestop` to stop the game and reset everyone.
 ## Commands
-Coming soon to a store near you...
+:red_circle: `/lastlifestart` 
+
+This command starts the game, while it is started, none of the setting commands will work.
+
+:red_circle: `/lastlifestop` 
+
+This command stops the game, while it is stopped, all of the commands will work.
+
+:green_circle: `/givelife` or `/gl`
+
+This command gives one of your ives and gives it to another player.
+
+:red_circle: `/` 
+
+Place holder text
+
+:red_circle: `/` 
+
+Place holder text
+
+:red_circle: `/` 
+
+Place holder text
+
+:red_circle: `/` 
+
+Place holder text
