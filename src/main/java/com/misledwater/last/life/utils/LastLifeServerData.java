@@ -1,4 +1,4 @@
-package com.misledwater.last.life;
+package com.misledwater.last.life.utils;
 
 public class LastLifeServerData {
   private boolean isStarted = false;
@@ -9,7 +9,8 @@ public class LastLifeServerData {
   private int minLives = 2;
   private int maxBoogeymen = 2;
   private int minBoogeymen = 1;
-  
+
+
   public boolean getIsStarted(){return isStarted;}
   public boolean getShowNameColor(){return showNameColor;}
   public boolean getAnnounceRedNames(){return announceRedNames;}

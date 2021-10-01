@@ -9,6 +9,7 @@ import com.misledwater.last.life.command.GiveLifeCommand;
 import com.misledwater.last.life.command.LastLifeStartCmd;
 import com.misledwater.last.life.event.PlayerJoin;
 import com.misledwater.last.life.utils.FileManager;
+import com.misledwater.last.life.utils.LastLifeServerData;
 
 import java.io.File;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class LastLifeCore extends PluginBase {
 
     public static LastLifeCore plugin;
     public HashMap<UUID,FakeLastLifePlayer> allFakeLastLifePlayers;
-    public LastLifeServerData serverData;
+    public LastLifeServerData serverData = new LastLifeServerData();
 
     public LastLifeServerData getServerData(){
       return serverData;
@@ -53,8 +54,8 @@ public class LastLifeCore extends PluginBase {
       for(File file : FileManager.getFilesUnderFolder(new File("LastLifeData"))){
         String fileContent = FileManager.readFile(file);
         try {
-          LastLifeServerData serverData = gson.fromJson(fileContent, LastLifeServerData.class);
-          this.serverData = serverData;
+          LastLifeServerData servData = gson.fromJson(fileContent, LastLifeServerData.class);
+          //TODO make it put data into serverData
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -78,13 +79,16 @@ public class LastLifeCore extends PluginBase {
       Gson gson = new Gson();
       LastLifeCore.getPlugin().getLogger().info("\n");
       LastLifeCore.getPlugin().getLogger().info("Saving Server Data!");
-      String toPut = gson.toJson(LastLifeServerData.class);
+      String toPut = gson.toJson(getServerData());
       FileManager.writeFile(new File("LastLifeData/ServerData.json"), toPut);
       LastLifeCore.getPlugin().getLogger().info("\n");
     }
 
     @Override
     public void onEnable() {
+        plugin = this;
+        serverData = new LastLifeServerData();
+        allFakeLastLifePlayers = new HashMap<>();
         this.getLogger().info(TextFormat.GREEN + "\n\nTutorial Plugin is on!\n\n");
         registerCommands();
         registerEvents();
@@ -113,6 +117,7 @@ public class LastLifeCore extends PluginBase {
     @Override
     public void onDisable() {
         savePlayerFiles();
+        saveServerData();
         this.getLogger().info(TextFormat.RED + "\n\nTutorial plugin is off!\n\n");
     }
 }
