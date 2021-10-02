@@ -29,7 +29,21 @@ public class FakeLastLifePlayer {
         return name;
     }
 
+    public int getKills() { return kills; }
+
+    public int getDeaths() { return deaths; }
+
     public int getLives() { return lives; }
 
+    public boolean getLastLifePlayer() { return lastLifePlayer; }
+
+    public boolean getIsBoogeyman() { return isBoogeyman; }
+
     public void setLives(int lives) { this.lives = lives; }
+
+    public void setKills(int kills) { this.kills = kills; }
+
+    public void setDeaths(int deaths) { this.deaths = deaths; }
+
+    public void setIsBoogeyman(boolean isBoogeyman) { this.isBoogeyman = isBoogeyman; }
 }

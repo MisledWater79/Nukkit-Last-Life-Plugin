@@ -26,9 +26,9 @@ public class GiveLifeCommand extends Command {
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] args){
-        if(!(sender instanceof Player)){
+        if(sender instanceof Player){
             if(args.length == 0){
-                sender.sendMessage(TextFormat.RED + "Please identify a player to push!");
+                sender.sendMessage(TextFormat.RED + "Please identify a player to give a life!");
                 return false;
             }
 

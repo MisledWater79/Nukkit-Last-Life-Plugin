@@ -7,7 +7,9 @@ import cn.nukkit.utils.TextFormat;
 import com.google.gson.Gson;
 import com.misledwater.last.life.command.GiveLifeCommand;
 import com.misledwater.last.life.command.LastLifeStartCmd;
+import com.misledwater.last.life.command.LastLifeStopCmd;
 import com.misledwater.last.life.event.PlayerJoin;
+import com.misledwater.last.life.event.PlayerKillAndDeath;
 import com.misledwater.last.life.utils.FileManager;
 import com.misledwater.last.life.utils.LastLifeServerData;
 
@@ -31,6 +33,7 @@ public class LastLifeCore extends PluginBase {
 
     @Override
     public void onLoad(){
+        plugin = this;
         loadPlayerFiles();
         loadServerData();
     }
@@ -50,17 +53,15 @@ public class LastLifeCore extends PluginBase {
     }
     
     private void loadServerData(){
-      Gson gson = new Gson();
-      for(File file : FileManager.getFilesUnderFolder(new File("LastLifeData"))){
-        String fileContent = FileManager.readFile(file);
-        try {
-          LastLifeServerData servData = gson.fromJson(fileContent, LastLifeServerData.class);
-          //TODO make it put data into serverData
-        } catch (Exception e) {
-          e.printStackTrace();
+        Gson gson = new Gson();
+        for(File file : FileManager.getFilesUnderFolder(new File("LastLifeData/Server"))){
+            String fileContent = FileManager.readFile(file);
+            try {
+                LastLifeCore.getPlugin().serverData = gson.fromJson(fileContent, LastLifeServerData.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-      }
-    
     }
 
     private void savePlayerFiles(){
@@ -80,14 +81,12 @@ public class LastLifeCore extends PluginBase {
       LastLifeCore.getPlugin().getLogger().info("\n");
       LastLifeCore.getPlugin().getLogger().info("Saving Server Data!");
       String toPut = gson.toJson(getServerData());
-      FileManager.writeFile(new File("LastLifeData/ServerData.json"), toPut);
+      FileManager.writeFile(new File("LastLifeData/Server/ServerData.json"), toPut);
       LastLifeCore.getPlugin().getLogger().info("\n");
     }
 
     @Override
     public void onEnable() {
-        plugin = this;
-        serverData = new LastLifeServerData();
         allFakeLastLifePlayers = new HashMap<>();
         this.getLogger().info(TextFormat.GREEN + "\n\nTutorial Plugin is on!\n\n");
         registerCommands();
@@ -103,11 +102,13 @@ public class LastLifeCore extends PluginBase {
         SimpleCommandMap commandMap = getServer().getCommandMap();
         commandMap.register("lastlife", new GiveLifeCommand());
         commandMap.register("lastlifestart", new LastLifeStartCmd());
+        commandMap.register("lastlifestop", new LastLifeStopCmd());
     }
 
     private void registerEvents(){
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerJoin(), this);
+        pluginManager.registerEvents(new PlayerKillAndDeath(), this);
     }
 
     private void registerTasks(){
